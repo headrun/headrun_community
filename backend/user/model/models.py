@@ -21,7 +21,3 @@ class Profile(BaseModel):
     designation=models.CharField(max_length = 30, choices = DESIGNATION_CHOICES,default='SE')
     work_location=models.CharField(max_length=30,choices = LOCATION_CHOICES,default='HYDERABAD')
     status=models.BooleanField(default=False)
-
-def _str_(self):
-    return self.user_name.username
-    
