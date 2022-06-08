@@ -6,7 +6,7 @@ from base.models import BaseActiveOrderedModel,BaseActiveModel
 # Create your models here.
 TEAM_CHOICES=(
     ("HRH","HRH"),
-    ("HRB","HRB")
+    ("HRB","HRB"),
 )
 EVENTFILE_CHOICES=(
     ("PHOTO","PHOTO"),
