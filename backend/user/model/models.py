@@ -1,7 +1,6 @@
 
 from django.db import models
 from django.contrib.auth.models import User
-
 from base.models import BaseModel
 # Create your models here.
 
@@ -15,6 +14,7 @@ DESIGNATION_CHOICES=(
     ('SE','SE'),
     )
 
+#Profile model
 class Profile(BaseModel):
     user_id= models.OneToOneField(User,on_delete=models.CASCADE,null=True)
     date_of_birth=models.DateField()

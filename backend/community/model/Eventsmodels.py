@@ -14,6 +14,7 @@ EVENTFILE_CHOICES=(
     ("AUDIO","AUDIO"),
 )
 
+#Eventdetails Model
 class Events(BaseActiveOrderedModel):
     posted_username=models.ForeignKey(User, on_delete=models.CASCADE,null=True, related_name="event_postedby")
     event_title=models.CharField(max_length=50, null=True)
@@ -24,15 +25,17 @@ class Events(BaseActiveOrderedModel):
         
     def __str__(self):
         return self.event_title
-    
+  
+
+#Event photos,videos or audio files
 class EventPhotos(BaseActiveOrderedModel):
     event_id=models.ForeignKey(Events,on_delete=models.CASCADE,null=True, related_name="event_user")
     eventfile_type=models.CharField(max_length=20, choices = EVENTFILE_CHOICES,default="PHOTO")
     event_file=models.FileField(upload_to='static/', null=True, verbose_name="event_images")
     
+    
+#Feedback on events
 class Feedback(BaseActiveOrderedModel):
     event_id=models.ForeignKey(Events,on_delete=models.CASCADE,null=True, related_name="post_feedbackid")
     feedback=models.TextField(max_length=500 , null=True)
     given_by= models.ForeignKey(User, on_delete=models.CASCADE,null=True, related_name="given_user")
-    
-    
