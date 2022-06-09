@@ -1,7 +1,7 @@
 
 from django.contrib import admin
-from community.model.poststorymodels import Posts,Reactions,Comments
-from community.model.Eventsmodels import Events,EventPhotos,Feedback
+from community.models.poststorymodels import Posts,Reactions,Comments
+from community.models.Eventsmodels import Events,EventPhotos,Feedback
 # Register your models here.
 
 admin.site.register(Posts)

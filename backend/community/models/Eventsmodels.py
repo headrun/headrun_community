@@ -14,6 +14,7 @@ EVENTFILE_CHOICES=(
     ("AUDIO","AUDIO"),
 )
 
+
 #Eventdetails Model
 class Events(BaseActiveOrderedModel):
     posted_username=models.ForeignKey(User, on_delete=models.CASCADE,null=True, related_name="event_postedby")
@@ -22,9 +23,9 @@ class Events(BaseActiveOrderedModel):
     event_date=models.DateTimeField(default = timezone.now)
     location=models.CharField(max_length=500)
     team=models.CharField(max_length=20, choices = TEAM_CHOICES,default="HRH")
-        
-    def __str__(self):
-        return self.event_title
+
+    class Meta(BaseActiveOrderedModel.Meta):
+        pass
   
 
 #Event photos,videos or audio files
@@ -32,6 +33,9 @@ class EventPhotos(BaseActiveOrderedModel):
     event_id=models.ForeignKey(Events,on_delete=models.CASCADE,null=True, related_name="event_user")
     eventfile_type=models.CharField(max_length=20, choices = EVENTFILE_CHOICES,default="PHOTO")
     event_file=models.FileField(upload_to='static/', null=True, verbose_name="event_images")
+
+    class Meta(BaseActiveOrderedModel.Meta):
+        pass
     
     
 #Feedback on events
@@ -39,3 +43,6 @@ class Feedback(BaseActiveOrderedModel):
     event_id=models.ForeignKey(Events,on_delete=models.CASCADE,null=True, related_name="post_feedbackid")
     feedback=models.TextField(max_length=500 , null=True)
     given_by= models.ForeignKey(User, on_delete=models.CASCADE,null=True, related_name="given_user")
+
+    class Meta(BaseActiveOrderedModel.Meta):
+        pass

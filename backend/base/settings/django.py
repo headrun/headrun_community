@@ -80,16 +80,23 @@ WSGI_APPLICATION = 'base.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE':   'django.db.backends.postgresql_psycopg2',
-        'NAME':     os.environ.get('ENV_DATABASE_NAME', PROJECT + '_' + os.environ['SITE']).lower(),
-        'USER':     os.environ.get('ENV_DATABASE_USER', 'root1'),
-        'PASSWORD': os.environ.get('ENV_DATABASE_PASSWORD', 'root1'),
-        'HOST':     os.environ.get('ENV_DATABASE_HOST', 'localhost'),
-        'PORT':     os.environ.get('ENV_DATABASE_PORT', ''),
-        'OPTIONS':  {
-        },
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE':   'django.db.backends.postgresql_psycopg2',
+#         'NAME':     os.environ.get('ENV_DATABASE_NAME', PROJECT + '_' + os.environ['SITE']).lower(),
+#         'USER':     os.environ.get('ENV_DATABASE_USER', 'root1'),
+#         'PASSWORD': os.environ.get('ENV_DATABASE_PASSWORD', 'root1'),
+#         'HOST':     os.environ.get('ENV_DATABASE_HOST', 'localhost'),
+#         'PORT':     os.environ.get('ENV_DATABASE_PORT', ''),
+#         'OPTIONS':  {
+#         },
+#     }
+# }
 
 
 # Password validation
@@ -224,3 +231,6 @@ if is_cors_enabled:
     INSTALLED_APPS +=['corsheaders']
     # CorsMiddleware good to add before of CommonMiddleware on response/request.
     MIDDLEWARE.insert(2, "corsheaders.middleware.CorsMiddleware")
+
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

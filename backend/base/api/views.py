@@ -2,7 +2,7 @@ import logging
 import traceback
 
 from urllib.parse import unquote
-from django.conf.urls import url
+from django.urls import re_path as url
 from django.core.exceptions import FieldError
 from django.http import Http404
 from django.urls import reverse
@@ -171,7 +171,7 @@ class CreateUpdateMixin:
     def get_key_and_defaults(self, model, data):
         field_kwargs = {}
 
-        # get field name from unique together in model
+        # get field name from unique together in models
         for field_name in self.get_unique_together_field_names(model):
             field = model._meta.get_field(field_name)
 

@@ -1,4 +1,3 @@
-from datetime import timezone
 from django.db import models
 from django.contrib.auth.models import User
 from base.models import BaseActiveOrderedModel,BaseActiveModel
@@ -17,11 +16,11 @@ REACTION_CHOICES = (
     ("LIKE", "LIKE"),
     )
 
-#Posts,Story model 
+#Posts,Story models
 class Posts(BaseActiveOrderedModel):
     post_type=models.CharField(max_length = 30, choices = POST_CHOICES)
     posted_username=models.ForeignKey(User, on_delete=models.CASCADE,null=True, related_name="createdby")
-    date_posted = models.DateTimeField(default = timezone.now)
+    date_posted = models.DateTimeField(auto_now_add=True)
     description=models.TextField(max_length=500, null=True)
     tags=models.CharField(max_length=50 ,null=True)
     links=models.URLField(max_length=200, null=True)
@@ -42,7 +41,7 @@ class Comments(BaseActiveOrderedModel):
     comment_by= models.ForeignKey(User,on_delete=models.CASCADE,null=True, related_name="comment_by")
     post_id= models.ForeignKey(Posts, on_delete=models.CASCADE,null=True, related_name="post_id")
     comment=models.TextField()
-    comment_date=models.DateTimeField(default = timezone.now)
+    comment_date=models.DateTimeField(auto_now_add=True)
 
 
 #reactions on post,story
