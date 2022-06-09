@@ -2,7 +2,7 @@ from django.shortcuts import render
 from backend.user.api import serializers
 from user.api.serializers.serializers import ProfileSerializer
 from user.api import serailizers
-from user.model.models import Profile
+from backend.user.models import Profile
 from rest_framework.decorators import api_view
 from django.http import HttpResponse
 from django.contrib.auth.models import User
@@ -15,7 +15,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.exceptions import AuthenticationFailed
 from api.serializers.serializers import UserSerializer
-from model.models import User
+from backend.user.models import User
 import jwt, datetime
 
 

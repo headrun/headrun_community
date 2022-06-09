@@ -225,7 +225,8 @@ if is_cors_enabled:
     INSTALLED_APPS +=['corsheaders']
     # CorsMiddleware good to add before of CommonMiddleware on response/request.
     MIDDLEWARE.insert(2, "corsheaders.middleware.CorsMiddleware")
-AUTH_USER_MODEL = 'users.User'
+
+AUTH_USER_MODEL = 'user.User'
 
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True
