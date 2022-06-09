@@ -18,7 +18,7 @@ from rest_framework.status import (
 from rest_framework.urlpatterns import format_suffix_patterns
 from rest_framework.views import exception_handler as drf_exception_handler
 
-from storages.backends.s3boto3 import S3Boto3Storage
+# from storages.backends.s3boto3 import S3Boto3Storage
 
 log = logging.getLogger(__name__)
 
