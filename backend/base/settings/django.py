@@ -224,6 +224,7 @@ else:
 # rest_framework
 REST_FRAMEWORK = {
     'EXCEPTION_HANDLER': 'base.api.views.exception_handler',
+    "DATE_INPUT_FORMATS": ["%d-%m-%Y"],
 }
 is_cors_enabled = os.environ.get("ENV_CORS_ALLOW_ALL_ORIGINS", False) or DEBUG
 if is_cors_enabled:
