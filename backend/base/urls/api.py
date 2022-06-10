@@ -1,11 +1,10 @@
-from django.urls import path, re_path
 from django.conf.urls import include, static
-from django.views.generic.base import RedirectView
 from django.contrib import admin
-
-from ..utils import import_module_var
+from django.urls import path
 
 from ..settings import DjangoUtil;
+from ..utils import import_module_var
+
 settings = DjangoUtil.settings()
 
 from ..views import home
@@ -26,6 +25,7 @@ for app in settings.APP_LIST:
     except ImportError:
         pass
 
+
 def get_urlpatterns(api_prefix=''):
     patterns = []
 
@@ -39,7 +39,9 @@ def get_urlpatterns(api_prefix=''):
 
     return patterns
 
+
 urlpatterns += get_urlpatterns()
+
 
 def add_debug_urlpatterns(urlpatterns):
     urlpatterns += static.static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
@@ -51,9 +53,6 @@ def add_debug_urlpatterns(urlpatterns):
     ]
     return urlpatterns
 
+
 if settings.DEBUG:
     urlpatterns = add_debug_urlpatterns(urlpatterns)
-
-urlpatterns += [
-    re_path(r'(?:login|dashboard|Configuration|SkuConfiguration|UserList|Detail|SkuNotes|CompareClients|home)', home)
-]
