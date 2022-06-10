@@ -1,12 +1,15 @@
-from .views.event import EventsListCreateView, EventPhotosDetailView, FeedbackListCreateView
+from .views.event import CommentsListCreateView, EventsListCreateView, EventPhotosDetailView, FeedbackListCreateView, FileTypeDetailView, PostsListCreateView, ReactionsDetailView
 
 version = 1
 
 views = [
     EventsListCreateView,
     EventPhotosDetailView,
-    FeedbackListCreateView
-
+    FeedbackListCreateView,
+    PostsListCreateView,
+    FileTypeDetailView,
+    CommentsListCreateView,
+    ReactionsDetailView
 ]
 
 urlpatterns = []

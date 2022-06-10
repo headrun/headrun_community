@@ -1,4 +1,5 @@
-from base.api.serializers import BaseDetailSerializer, BaseModelSerializer
+from base.api.serializers import BaseDetailSerializer, BaseListCreateSerializer, BaseModelSerializer
+from community.models.poststorymodels import Comments, FileType, Posts, Reactions
 
 from ...models.Eventsmodels import Events, EventPhotos, Feedback
 
@@ -18,4 +19,28 @@ class EventPhotosDetailSerializer(BaseModelSerializer):
 class FeadbackDetailSerializer(BaseDetailSerializer):
     class Meta(BaseDetailSerializer.Meta):
         model = Feedback
-        fields = ['id']
+        fields = ['id', 'event_id', 'feedback', 'given_by']
+
+
+class PostsDetailSerializer(BaseListCreateSerializer):
+    class Meta(BaseDetailSerializer.Meta):
+        model = Posts
+        fields = ['post_type', 'posted_username', 'date_posted', 'description', 'tags', 'links']
+        
+
+class FileTypeDetailSerializer(BaseDetailSerializer):
+    class Meta(BaseDetailSerializer.Meta):
+        model = FileType
+        fields = ['id', 'file_type', 'post_file']
+
+
+class CommentsDetailSerializer(BaseListCreateSerializer):
+    class Meta(BaseDetailSerializer.Meta):
+        model = Comments
+        fields = ['comment_by', 'post_id', 'comment', 'comment_date']
+        
+
+class ReactionsDetailSerializer(BaseDetailSerializer):
+    class Meta(BaseDetailSerializer.Meta):
+        model = Reactions
+        fields = ['user', 'reacted_to', 'reaction'] 
