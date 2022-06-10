@@ -1,10 +1,11 @@
-from .views.event import EventsListCreateView, EventPhotosDetailView
+from .views.event import EventsListCreateView, EventPhotosDetailView, FeedbackListCreateView
 
 version = 1
 
 views = [
     EventsListCreateView,
-    EventPhotosDetailView
+    EventPhotosDetailView,
+    FeedbackListCreateView
 
 ]
 
