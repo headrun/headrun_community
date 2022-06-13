@@ -1,9 +1,15 @@
-from base.api.views import BaseListCreateUpdateView, BaseDetailView
+from base.api.views import BaseListCreateUpdateView, BaseDetailView, BaseListCreateView
 
 from ..serializers.event import (
+    CommentsDetailSerializer,
+    EventReactionsDetailSerializer,
     EventsDetailSerializer,
     EventPhotosDetailSerializer,
-    FeadbackDetailSerializer
+    FeadbackDetailSerializer,
+    EventReactionsDetailSerializer,
+    PostsDetailSerializer,
+    FileTypeDetailSerializer,
+    ReactionsDetailSerializer
 )
 
 
@@ -17,4 +23,23 @@ class EventPhotosDetailView(BaseDetailView):
 
 class FeedbackListCreateView(BaseListCreateUpdateView):
     serializer_class = FeadbackDetailSerializer
+    
+    
+class EventReactionsDetailView(BaseListCreateUpdateView):
+    serializer_class = EventReactionsDetailSerializer
 
+
+class PostsListCreateView(BaseListCreateUpdateView):
+    serializer_class = PostsDetailSerializer
+    
+
+class FileTypeDetailView(BaseListCreateUpdateView):
+    serializer_class = FileTypeDetailSerializer
+    
+
+class CommentsListCreateView(BaseListCreateUpdateView):
+    serializer_class = CommentsDetailSerializer
+    
+    
+class ReactionsDetailView(BaseListCreateUpdateView):
+    serializer_class = ReactionsDetailSerializer
