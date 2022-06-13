@@ -10,8 +10,8 @@ class EventsDetailSerializer(BaseDetailSerializer):
         fields = ['id', 'posted_username', 'event_title', 'event_descript', 'event_date', 'location', 'team']
 
 
-class EventPhotosDetailSerializer(BaseModelSerializer):
-    class Meta(BaseModelSerializer.Meta):
+class EventPhotosDetailSerializer(BaseDetailSerializer):
+    class Meta(BaseDetailSerializer.Meta):
         model = EventPhotos
         fields = ['event_id', 'eventfile_type', 'event_file']
 
