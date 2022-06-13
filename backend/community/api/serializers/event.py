@@ -1,7 +1,7 @@
 from base.api.serializers import BaseDetailSerializer, BaseListCreateSerializer, BaseModelSerializer
 from community.models.poststorymodels import Comments, FileType, Posts, Reactions
 
-from ...models.Eventsmodels import Events, EventPhotos, Feedback
+from ...models.Eventsmodels import EventReactions, Events, EventPhotos, Feedback
 
 
 class EventsDetailSerializer(BaseDetailSerializer):
@@ -20,6 +20,12 @@ class FeadbackDetailSerializer(BaseDetailSerializer):
     class Meta(BaseDetailSerializer.Meta):
         model = Feedback
         fields = ['id', 'event_id', 'feedback', 'given_by']
+        
+        
+class EventReactionsDetailSerializer(BaseListCreateSerializer):
+    class Meta(BaseDetailSerializer.Meta):
+        model = EventReactions
+        fields = ['id', 'posted_event', 'event_reaction', 'reacted_user']
 
 
 class PostsDetailSerializer(BaseListCreateSerializer):

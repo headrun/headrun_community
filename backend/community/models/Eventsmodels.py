@@ -62,9 +62,9 @@ class Feedback(BaseActiveOrderedModel):
 
 #Event reactions
 class EventReactions(models.Model):
-    posted_event= models.ForeignKey(Events, on_delete=models.CASCADE, related_name="event_reaction")
+    posted_event= models.ForeignKey(Events, on_delete=models.CASCADE, related_name="event_posted")
     event_reaction = models.CharField(max_length=20, choices=REACTION_CHOICES, default="PHOTO")
-    user=models.ForeignKey(User, on_delete=models.CASCADE, related_name="given_user")
+    reacted_user=models.ForeignKey(User, on_delete=models.CASCADE, related_name="given_user")
     
     class Meta(BaseActiveOrderedModel.Meta):
-        pass
+        ordering = ["posted_event", "event_reaction", "reacted_user"]
