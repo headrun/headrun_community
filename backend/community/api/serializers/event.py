@@ -5,12 +5,18 @@ from ...models.Eventsmodels import EventReactions, Events, EventPhotos, Feedback
 
 
 class EventsDetailSerializer(BaseDetailSerializer):
+    event_photos = serializers.SerializerMethodField()
+
     class Meta(BaseDetailSerializer.Meta):
         model = Events
-        fields = ['id', 'posted_username', 'event_title', 'event_descript', 'event_date', 'location', 'team']
+        fields = ['id', 'posted_username', 'event_title', 'event_category',
+                  'event_date', 'event_descript', 'location', 'team', 'event_photos']
+
+    def get_event_photos(self, instance):
+        return [EventPhotosDetailSerializer(m).data for m in instance.event_user.all()]
 
 
-class EventPhotosDetailSerializer(BaseDetailSerializer):
+class EventPhotosDetailSerializer(BaseListCreateSerializer):
     class Meta(BaseDetailSerializer.Meta):
         model = EventPhotos
         fields = ['event_id', 'eventfile_type', 'event_file']

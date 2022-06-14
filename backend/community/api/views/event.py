@@ -17,7 +17,7 @@ class EventsListCreateView(BaseListCreateUpdateView):
     serializer_class = EventsDetailSerializer
 
 
-class EventPhotosDetailView(BaseDetailView):
+class EventPhotosDetailView(BaseListCreateUpdateView):
     serializer_class = EventPhotosDetailSerializer
 
 
