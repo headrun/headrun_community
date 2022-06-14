@@ -1,7 +1,7 @@
 from dataclasses import field, fields
 from rest_framework import serializers
 from django.contrib.auth.models import User
-from user.model.models import Profile
+from user.models import Profile
 # from headrun_community.user.models.models import Profile, Posts
 
 
