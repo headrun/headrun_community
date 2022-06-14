@@ -11,17 +11,19 @@ class ProfileDetailSerializer(BaseDetailSerializer):
         fields = ['user_id', 'usename', 'email','date_of_birth', 'date_joined','designation', 'work_location']
 
 
-#Home page/getting all posts,events
+#getting specific user's posts,events
 class ProfilePostEventDetailSerializer(BaseDetailSerializer):
-    post_details = serializers.SerializerMethodField()
-    event_details = serializers.SerializerMethodField()
+    post_details = serializers.SerializerMethodField('get_post_details')
+    event_details = serializers.SerializerMethodField('get_event_details')
 
     class Meta(BaseDetailSerializer.Meta):
         model = User
+        fields= ['id','username','email','post_details','event_details']
+   
 
     def get_post_details(self, instance):
-        return [PostsDetailSerializer(m).data for m in instance.createdby.all()]
+        return [PostsDetailSerializer(m).data for m in instance.createdby.filter(username=self.username)]
     
     def get_event_details(self, instance):
-        return [EventsDetailSerializer(a).data for a in instance.event_postedby.all()]
-    
+        return [EventsDetailSerializer(a).data for a in instance.event_postedby.filter(username=self.username)]
+   

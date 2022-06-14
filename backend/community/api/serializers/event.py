@@ -51,10 +51,12 @@ class ReactionsDetailSerializer(BaseDetailSerializer):
         model = Reactions
         fields = ['user', 'reacted_to', 'reaction']
         
-        
+
+
+
 #feed page/getting all posts
 class AllPostDetailSerializer(BaseDetailSerializer):
-    posts_details = serializers.SerializerMethodField()
+    posts_details = serializers.SerializerMethodField('get_posts_details')
 
     class Meta(BaseDetailSerializer.Meta):
         model = Posts

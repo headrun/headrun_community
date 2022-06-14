@@ -40,6 +40,7 @@ def get_urlpatterns(api_prefix=''):
             )
         except ModuleNotFoundError as err:
             print(f'failed to load app api urls: {str(err)}')
+            pass
 
     return patterns
 
