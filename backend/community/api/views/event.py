@@ -1,9 +1,8 @@
-from base.api.views import BaseListCreateUpdateView, BaseDetailView, BaseListCreateView
+from base.api.views import BaseListCreateUpdateView, BaseDetailView
 
 from ..serializers.event import (
     AllPostDetailSerializer,
     CommentsDetailSerializer,
-    EventReactionsDetailSerializer,
     EventsDetailSerializer,
     EventPhotosDetailSerializer,
     FeadbackDetailSerializer,

@@ -1,4 +1,13 @@
-from .views.event import AllPostsDetailView, CommentsListCreateView, EventReactionsDetailView, EventsListCreateView, EventPhotosDetailView, FeedbackListCreateView, FileTypeDetailView, PostsListCreateView, ReactionsDetailView
+from .views.event import (
+    AllPostsDetailView,
+    CommentsListCreateView,
+    EventReactionsDetailView,
+    EventsListCreateView,
+    EventPhotosDetailView,
+    FeedbackListCreateView,
+    FileTypeDetailView,
+    PostsListCreateView,
+    ReactionsDetailView)
 
 version = 1
 
