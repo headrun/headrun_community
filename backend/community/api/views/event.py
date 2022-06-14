@@ -1,6 +1,7 @@
 from base.api.views import BaseListCreateUpdateView, BaseDetailView, BaseListCreateView
 
 from ..serializers.event import (
+    AllPostDetailSerializer,
     CommentsDetailSerializer,
     EventReactionsDetailSerializer,
     EventsDetailSerializer,
@@ -43,3 +44,7 @@ class CommentsListCreateView(BaseListCreateUpdateView):
     
 class ReactionsDetailView(BaseListCreateUpdateView):
     serializer_class = ReactionsDetailSerializer
+    
+    
+class AllPostsDetailView(BaseListCreateUpdateView):
+    serializer_class = AllPostDetailSerializer

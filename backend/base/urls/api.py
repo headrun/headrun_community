@@ -15,7 +15,10 @@ urlpatterns = [
 ]
 
 for app in settings.APP_LIST:
+    
+    
     prefix = import_module_var(app + '.URL_PREFIX', app)
+    
     try:
         if prefix:
             prefix += '/'
@@ -28,8 +31,9 @@ for app in settings.APP_LIST:
 
 def get_urlpatterns(api_prefix=''):
     patterns = []
-
+    print(settings.API_APP_LIST)
     for app in settings.API_APP_LIST:
+        print(app)
         try:
             patterns.append(
                 path(api_prefix, include(app + '.api.urls'))

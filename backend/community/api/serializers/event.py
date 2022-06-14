@@ -1,6 +1,6 @@
 from base.api.serializers import BaseDetailSerializer, BaseListCreateSerializer, BaseModelSerializer
 from community.models.poststorymodels import Comments, FileType, Posts, Reactions
-
+from rest_framework import serializers
 from ...models.Eventsmodels import EventReactions, Events, EventPhotos, Feedback
 
 
@@ -49,4 +49,26 @@ class CommentsDetailSerializer(BaseListCreateSerializer):
 class ReactionsDetailSerializer(BaseDetailSerializer):
     class Meta(BaseDetailSerializer.Meta):
         model = Reactions
-        fields = ['user', 'reacted_to', 'reaction'] 
+        fields = ['user', 'reacted_to', 'reaction']
+        
+        
+#feed page/getting all posts
+class AllPostDetailSerializer(BaseDetailSerializer):
+    posts_details = serializers.SerializerMethodField()
+
+    class Meta(BaseDetailSerializer.Meta):
+        model = Posts
+        
+    def get_posts_details(self, instance):
+        return [FileTypeDetailSerializer(a).data for a in instance.postid.all()]
+
+
+#Events page/getting all posts
+class AllEventsDetailSerializer(BaseDetailSerializer):
+    posts_details = serializers.SerializerMethodField()
+
+    class Meta(BaseDetailSerializer.Meta):
+        model = Posts
+        
+    def get_posts_details(self, instance):
+        return [FileTypeDetailSerializer(a).data for a in instance.postid.all()]
