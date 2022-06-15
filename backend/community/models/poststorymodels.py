@@ -48,15 +48,16 @@ class Comments(BaseActiveOrderedModel):
     post_id = models.ForeignKey(Posts, on_delete=models.CASCADE, null=True, related_name="post_id")
     comment = models.TextField()
     comment_date = models.DateTimeField(auto_now_add=True)
-    
+
     class Meta(BaseActiveOrderedModel.Meta):
         pass
+
 
 # reactions on post,story
 class Reactions(BaseActiveOrderedModel):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, related_name="liked_by")
     reacted_to = models.ForeignKey(Posts, on_delete=models.CASCADE, null=True, related_name="likedpost")
     reaction = models.CharField(max_length=500, choices=REACTION_CHOICES, default="LIKE")
-    
+
     class Meta(BaseActiveOrderedModel.Meta):
         pass

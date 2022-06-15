@@ -1,11 +1,10 @@
-from base.api.views import BaseListCreateUpdateView
-from api.serializers import user
-
+from base.api.views import BaseListCreateUpdateView, BaseListView
+from ..serializers.user import ProfileListCreateSerializer, ProfilePostEventDetailSerializer
 
 
 class ProfileListCreateView(BaseListCreateUpdateView):
-    serializer_class = user.ProfileDetailSerializer
+    serializer_class = ProfileListCreateSerializer
 
 
-class ProfilePostListCreateView(BaseListCreateUpdateView):
-    serializer_class= user.ProfilePostEventDetailSerializer
+class ProfilePostListView(BaseListView):
+    serializer_class = ProfilePostEventDetailSerializer

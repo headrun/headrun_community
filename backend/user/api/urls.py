@@ -1,10 +1,10 @@
-from .views.userviews import ProfileListCreateView, ProfilePostListCreateView
+from .views.userviews import ProfileListCreateView, ProfilePostListView
 
 version = 1
 
 views = [
     ProfileListCreateView,
-    ProfilePostListCreateView
+    ProfilePostListView
     
 ]
 
