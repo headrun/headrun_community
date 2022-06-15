@@ -83,4 +83,4 @@ class StoriesDetailSerializer(BaseDetailSerializer):
 
     def get_stories_details(self, instance):
         #return [PostsDetailSerializer(a).data for a in instance.createdby.filter(post_type='STORY', date_posted___lte=datetime.hour(24))]
-        return [PostsDetailSerializer(a).data for a in instance.post_type.filter(post_type='STORY')]
+        return [PostsDetailSerializer(a).data for a in instance.filter(post_type='STORY', date_posted___lte=datetime.hour(24))]
