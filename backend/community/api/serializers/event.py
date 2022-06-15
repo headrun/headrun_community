@@ -67,7 +67,7 @@ class AllPostDetailSerializer(BaseDetailSerializer):
         model = Posts
 
     def get_posts_details(self, instance):
-        return [FileTypeDetailSerializer(a).data for a in instance.postid.all()]
+        return [FileTypeDetailSerializer(a).data for a in instance.postid.filter(post_type='POST')]
     
 
 class PostsEventsSerializer(BaseDetailSerializer):
@@ -83,4 +83,4 @@ class StoriesDetailSerializer(BaseDetailSerializer):
 
     def get_stories_details(self, instance):
         #return [PostsDetailSerializer(a).data for a in instance.createdby.filter(post_type='STORY', date_posted___lte=datetime.hour(24))]
-        return [PostsDetailSerializer(a).data for a in instance.filter(post_type='STORY', date_posted___lte=datetime.hour(24))]
+        return [PostsDetailSerializer(a).data for a in instance.filter(post_type='STORY', date_posted___lte=datetime.timedelta(hours = 24))]
