@@ -50,4 +50,6 @@ class AllPostsDetailView(BaseListCreateUpdateView):
     serializer_class = AllPostDetailSerializer
 
 class StoriesDetailView(BaseListCreateUpdateView):
+    view_name = 'stories'
+    url_path = '/' + view_name + '/$'
     serializer_class = StoriesDetailSerializer

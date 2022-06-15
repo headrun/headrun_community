@@ -76,11 +76,11 @@ class PostsEventsSerializer(BaseDetailSerializer):
 
 #Story/getting stories which are within 24 hrs
 class StoriesDetailSerializer(BaseDetailSerializer):
-    stories_details = serializers.SerializerMethodField()
+    stories_details = serializers.SerializerMethodField('get_stories_details')
 
     class Meta(BaseDetailSerializer.Meta):
        model = Posts
 
     def get_stories_details(self, instance):
-        #return [PostsDetailSerializer(a).data for a in instance.createdby.filter(post_type='STORY', date_posted___lte=datetime.hour(24))]
-        return [PostsDetailSerializer(a).data for a in instance.filter(post_type='STORY', date_posted___lte=datetime.timedelta(hours = 24))]
+        #return [PostsDetailSerializer(a).data for a in instance.createdby.filter(post_type='STORY', , date_posted___lte=datetime.timedelta(hours = 24))]
+        return [FileTypeDetailSerializer(a).data for a in instance.postid.filter(post_type='STORY')]
