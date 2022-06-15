@@ -63,6 +63,11 @@ class AllPostDetailSerializer(BaseDetailSerializer):
         
     def get_posts_details(self, instance):
         return [FileTypeDetailSerializer(a).data for a in instance.postid.all()]
+    
+
+class PostsEventsSerializer(BaseDetailSerializer):
+        home_postsevents=serializers.SerializerMethodField()
+        
 
 
 #Events page/getting all events
