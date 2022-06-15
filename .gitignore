@@ -32,4 +32,4 @@ config.json
 **/.DS_Store
 
 **/migrations/*
-*.sqlite3
+*/db.sqlite3
