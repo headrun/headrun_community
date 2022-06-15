@@ -7,7 +7,8 @@ from .views.event import (
     FeedbackListCreateView,
     FileTypeDetailView,
     PostsListCreateView,
-    ReactionsDetailView)
+    ReactionsDetailView,
+    StoriesDetailView)
 
 version = 1
 
@@ -20,7 +21,8 @@ views = [
     AllPostsDetailView,
     FileTypeDetailView,
     CommentsListCreateView,
-    ReactionsDetailView
+    ReactionsDetailView,
+    StoriesDetailView
 ]
 
 urlpatterns = []

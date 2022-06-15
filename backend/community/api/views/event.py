@@ -9,7 +9,8 @@ from ..serializers.event import (
     EventReactionsDetailSerializer,
     PostsDetailSerializer,
     FileTypeDetailSerializer,
-    ReactionsDetailSerializer
+    ReactionsDetailSerializer,
+    StoriesDetailSerializer
 )
 
 
@@ -47,3 +48,6 @@ class ReactionsDetailView(BaseListCreateUpdateView):
     
 class AllPostsDetailView(BaseListCreateUpdateView):
     serializer_class = AllPostDetailSerializer
+
+class StoriesDetailView(BaseListCreateUpdateView):
+    serializer_class = StoriesDetailSerializer
