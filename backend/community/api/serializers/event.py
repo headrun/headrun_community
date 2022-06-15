@@ -1,3 +1,4 @@
+from datetime import datetime
 from base.api.serializers import BaseDetailSerializer, BaseListCreateSerializer, BaseModelSerializer
 from community.models.poststorymodels import Comments, FileType, Posts, Reactions
 from rest_framework import serializers
@@ -73,12 +74,12 @@ class PostsEventsSerializer(BaseDetailSerializer):
         home_postsevents=serializers.SerializerMethodField()
         
 
-# Events page/getting all events
-# class AllEventsDetailSerializer(BaseDetailSerializer):
-#     event_details = serializers.SerializerMethodField()
+#Story/getting stories which are within 24 hrs
+class StoriesDetailSerializer(BaseDetailSerializer):
+    stories_details = serializers.SerializerMethodField()
 
-#     class Meta(BaseDetailSerializer.Meta):
-#        model = EventPhotos
+    class Meta(BaseDetailSerializer.Meta):
+       model = Posts
 
-#     def get_event_details(self, instance):
-#         return [FileTypeDetailSerializer(a).data for a in instance.event_user.all()]
+    def get_stories_details(self, instance):
+        return [PostsDetailSerializer(a).data for a in instance.createdby.filter(post_type='STORY', date_posted___lte=datetime.hour(24))]
