@@ -28,6 +28,7 @@ REACTION_CHOICES = (
 
 # Event details Model
 class Events(BaseActiveOrderedModel):
+    
     posted_username = models.ForeignKey(User, on_delete=models.CASCADE, null=True, related_name="event_postedby")
     event_title = models.CharField(max_length=50, null=True, blank=True)
     event_descript = models.TextField(max_length=500, null=True, blank=True)
@@ -62,11 +63,9 @@ class Feedback(BaseActiveOrderedModel):
     event_comment = models.TextField(max_length=500)
     given_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name="feedback_givenby")
 
-    def __str__(self):
-        return self.event_comment
-    
+
     class Meta(BaseActiveOrderedModel.Meta):
-        pass
+            ordering = ["event_id", "event_comment", "given_by"]
 
 
 # Event reactions
@@ -76,4 +75,4 @@ class EventReactions(models.Model):
     reacted_user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="given_user")
 
     class Meta(BaseActiveOrderedModel.Meta):
-        ordering = ["posted_event", "event_reaction", "reacted_user"]
+            ordering = ["posted_event", "event_reaction", "reacted_user"]
