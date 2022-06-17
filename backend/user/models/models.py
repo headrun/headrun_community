@@ -11,7 +11,7 @@ LOCATION_CHOICES = (
 DESIGNATION_CHOICES = (
     ('SE', 'SE'),
     ('ASE', 'ASE'),
-    ('SE', 'SE'),
+    ('SSE', 'SSE'),
 )
 
 
@@ -22,6 +22,6 @@ class Profile(BaseModel):
     designation = models.CharField(max_length=30, choices=DESIGNATION_CHOICES, default='SE')
     work_location = models.CharField(max_length=30, choices=LOCATION_CHOICES, default='HYDERABAD')
     status = models.BooleanField(default=False)
-
+    
     class Meta(BaseModel.Meta):
         pass

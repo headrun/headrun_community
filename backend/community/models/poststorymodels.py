@@ -16,6 +16,7 @@ FILE_CHOICES = (
 )
 REACTION_CHOICES = (
     ("LIKE", "LIKE"),
+    ("DISLIKE", "DISLIKE")
 )
 
 
@@ -38,6 +39,8 @@ class FileType(BaseActiveOrderedModel):
     file_type = models.CharField(max_length=20, choices=FILE_CHOICES, default="Photo")
     post_file = models.FileField(upload_to='static/', null=True, verbose_name="post_images")
 
+    def __str__(self):
+        return self.post
     class Meta(BaseActiveOrderedModel.Meta):
         pass
 
@@ -48,7 +51,9 @@ class Comments(BaseActiveOrderedModel):
     post_id = models.ForeignKey(Posts, on_delete=models.CASCADE, null=True, related_name="post_id")
     comment = models.TextField()
     comment_date = models.DateTimeField(auto_now_add=True)
-
+    def __str__(self):
+        return self.comment
+    
     class Meta(BaseActiveOrderedModel.Meta):
         pass
 
@@ -59,5 +64,8 @@ class Reactions(BaseActiveOrderedModel):
     reacted_to = models.ForeignKey(Posts, on_delete=models.CASCADE, null=True, related_name="likedpost")
     reaction = models.CharField(max_length=500, choices=REACTION_CHOICES, default="LIKE")
 
+    def __str__(self):
+        return self.reaction
+    
     class Meta(BaseActiveOrderedModel.Meta):
         pass

@@ -35,7 +35,10 @@ class Events(BaseActiveOrderedModel):
     event_date = models.DateTimeField(default=timezone.now)
     location = models.CharField(max_length=500, null=True, blank=True)
     team = models.CharField(max_length=20, choices=TEAM_CHOICES, default="HRH")
-
+    
+    def __str__(self):
+        return self.event_title
+    
     class Meta(BaseActiveOrderedModel.Meta):
         pass
 
@@ -46,6 +49,9 @@ class EventPhotos(BaseActiveOrderedModel):
     eventfile_type = models.CharField(max_length=20, choices=EVENTFILE_CHOICES, default="PHOTO")
     event_file = models.FileField(upload_to='static/', verbose_name="event_images")
 
+    def __str__(self):
+        return self.event_id.event_title
+    
     class Meta(BaseActiveOrderedModel.Meta):
         pass
 
@@ -56,6 +62,9 @@ class Feedback(BaseActiveOrderedModel):
     event_comment = models.TextField(max_length=500)
     given_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name="feedback_givenby")
 
+    def __str__(self):
+        return self.event_comment
+    
     class Meta(BaseActiveOrderedModel.Meta):
         pass
 
