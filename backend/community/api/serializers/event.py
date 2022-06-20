@@ -105,4 +105,4 @@ class StoriesDetailSerializer(BaseListCreateSerializer):
     
     def get_stories_details(self, instance):
         #return [PostsDetailSerializer(a).data for a in instance.createdby.filter(post_type='STORY', , date_posted___lte=datetime.timedelta(hours = 24))]
-        return [PostTypeDetailSerializer(a).data for a in instance.postid.filter(file_type="Photo")]
+        return [PostTypeDetailSerializer(a).data for a in instance.postid.filter(file_type="Video")]
