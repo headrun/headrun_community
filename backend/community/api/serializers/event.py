@@ -47,11 +47,19 @@ class PostsDetailSerializer(BaseListCreateSerializer):
                   'tags', 'links', 'post_details']
 
     def get_post_details(self, instance):
-        return [(FileTypeDetailSerializer(m).data for m in instance.postid.all()),
+        return [
+                (FileTypeDetailSerializer(m).data for m in instance.postid.all()),
                 (CommentsDetailSerializer(m).data for m in instance.post_id.all()),
                 (ReactionsDetailSerializer(m).data for m in instance.likedpost.all())
                 ]
 
+
+class PostTypeDetailSerializer(BaseDetailSerializer):
+    class Meta(BaseDetailSerializer.Meta):
+        model = Posts
+        fields = ['id','post_type', 'posted_username', 'date_posted', 'description',
+                  'tags', 'links']
+  
 
 class FileTypeDetailSerializer(BaseDetailSerializer):
     class Meta(BaseDetailSerializer.Meta):
@@ -87,12 +95,14 @@ class ReactionsDetailSerializer(BaseDetailSerializer):
         
 
 #Story/getting stories which are within 24 hrs
-class StoriesDetailSerializer(BaseDetailSerializer):
-    stories_details = serializers.SerializerMethodField('get_stories_details')
+class StoriesDetailSerializer(BaseListCreateSerializer):
+    stories_details = serializers.SerializerMethodField()
 
     class Meta(BaseDetailSerializer.Meta):
        model = Posts
-
+       fields = ['id','post_type', 'posted_username', 'date_posted', 'description',
+                  'tags', 'links', 'stories_details']
+    
     def get_stories_details(self, instance):
         #return [PostsDetailSerializer(a).data for a in instance.createdby.filter(post_type='STORY', , date_posted___lte=datetime.timedelta(hours = 24))]
-        return [FileTypeDetailSerializer(a).data for a in instance.postid.filter(post_type='STORY')]
+        return [PostTypeDetailSerializer(a).data for a in instance.postid.filter(file_type="Photo")]

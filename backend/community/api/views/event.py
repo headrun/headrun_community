@@ -1,4 +1,4 @@
-from base.api.views import BaseListCreateUpdateView
+from base.api.views import BaseListCreateUpdateView, BaseListCreateView
 
 from ..serializers.event import (
     
@@ -7,6 +7,8 @@ from ..serializers.event import (
     EventPhotosDetailSerializer,
     FeadbackDetailSerializer,
     EventReactionsDetailSerializer,
+    PostTypeDetailSerializer,
+    PostTypeDetailSerializer,
     PostsDetailSerializer,
     FileTypeDetailSerializer,
     ReactionsDetailSerializer,
@@ -33,6 +35,10 @@ class EventReactionsDetailView(BaseListCreateUpdateView):
 class PostsListCreateView(BaseListCreateUpdateView):
     serializer_class = PostsDetailSerializer
     
+    
+class PostTypeListCreateView(BaseListCreateUpdateView):
+    serializer_class = PostTypeDetailSerializer
+    
 
 class FileTypeDetailView(BaseListCreateUpdateView):
     serializer_class = FileTypeDetailSerializer
@@ -46,7 +52,7 @@ class ReactionsDetailView(BaseListCreateUpdateView):
     serializer_class = ReactionsDetailSerializer
 
 
-class StoriesDetailView(BaseListCreateUpdateView):
+class StoriesDetailView(BaseListCreateView):
     view_name = 'stories'
     url_path = '/' + view_name + '/$'
     serializer_class = StoriesDetailSerializer
