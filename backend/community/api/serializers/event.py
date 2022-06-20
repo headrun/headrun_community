@@ -39,9 +39,18 @@ class EventReactionsDetailSerializer(BaseListCreateSerializer):
 
 
 class PostsDetailSerializer(BaseListCreateSerializer):
+    post_details = serializers.SerializerMethodField()
+
     class Meta(BaseDetailSerializer.Meta):
         model = Posts
-        fields = ['post_type', 'posted_username', 'date_posted', 'description', 'tags', 'links']
+        fields = ['id','post_type', 'posted_username', 'date_posted', 'description',
+                  'tags', 'links', 'post_details']
+
+    def get_post_details(self, instance):
+        return [(FileTypeDetailSerializer(m).data for m in instance.postid.all()),
+                (CommentsDetailSerializer(m).data for m in instance.post_id.all()),
+                (ReactionsDetailSerializer(m).data for m in instance.likedpost.all())
+                ]
 
 
 class FileTypeDetailSerializer(BaseDetailSerializer):
@@ -53,7 +62,7 @@ class FileTypeDetailSerializer(BaseDetailSerializer):
 class CommentsDetailSerializer(BaseListCreateSerializer):
     class Meta(BaseDetailSerializer.Meta):
         model = Comments
-        fields = ['comment_by', 'post_id', 'comment', 'comment_date']
+        fields = ['comment_by', 'comment', 'comment_date']
 
 
 class ReactionsDetailSerializer(BaseDetailSerializer):
@@ -62,19 +71,19 @@ class ReactionsDetailSerializer(BaseDetailSerializer):
         fields = ['user', 'reacted_to', 'reaction']
 
 
-# feed page/getting all posts
-class AllPostDetailSerializer(BaseDetailSerializer):
-    posts_details = serializers.SerializerMethodField('get_posts_details')
+# # feed page/getting all posts
+# class AllPostDetailSerializer(BaseDetailSerializer):
+#     posts_details = serializers.SerializerMethodField('get_posts_details')
 
-    class Meta(BaseDetailSerializer.Meta):
-        model = Posts
+#     class Meta(BaseDetailSerializer.Meta):
+#         model = Posts
 
-    def get_posts_details(self, instance):
-        return [FileTypeDetailSerializer(a).data for a in instance.postid.filter(post_type='POST')]
+#     def get_posts_details(self, instance):
+#         return [FileTypeDetailSerializer(a).data for a in instance.postid.filter(post_type='POST')]
     
 
-class PostsEventsSerializer(BaseDetailSerializer):
-        home_postsevents=serializers.SerializerMethodField()
+# class PostsEventsSerializer(BaseDetailSerializer):
+#         home_postsevents=serializers.SerializerMethodField()
         
 
 #Story/getting stories which are within 24 hrs

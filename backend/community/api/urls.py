@@ -1,5 +1,4 @@
 from .views.event import (
-    AllPostsDetailView,
     CommentsListCreateView,
     EventReactionsDetailView,
     EventsListCreateView,
@@ -18,7 +17,6 @@ views = [
     FeedbackListCreateView,
     EventReactionsDetailView,
     PostsListCreateView,
-    AllPostsDetailView,
     FileTypeDetailView,
     CommentsListCreateView,
     ReactionsDetailView,

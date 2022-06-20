@@ -31,7 +31,9 @@ class Posts(BaseActiveOrderedModel):
 
     def __str__(self):
         return self.description
-
+    
+    class Meta(BaseActiveOrderedModel.Meta):
+        pass
 
 # post's file type
 class FileType(BaseActiveOrderedModel):
@@ -41,6 +43,7 @@ class FileType(BaseActiveOrderedModel):
 
     def __str__(self):
         return self.post
+    
     class Meta(BaseActiveOrderedModel.Meta):
         pass
 
