@@ -15,7 +15,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home),
     path('openapi/', get_schema_view(
-        title="Nimbus Service",
+        title="headrun community Service",
         description="API developers hpoing to use our service"
     ), name='openapi-schema'),
     path('swagger-ui/', TemplateView.as_view(
