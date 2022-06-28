@@ -6,10 +6,21 @@ from community.api.serializers.event import EventsDetailSerializer, PostsDetailS
 from ...models import Profile
 
 
+class UserDetailSerializer(BaseDetailSerializer):
+    class Meta(BaseDetailSerializer.Meta):
+        model = User
+        fields = ['id', 'username', 'email']
+
+
 class ProfileListCreateSerializer(BaseListCreateSerializer):
+    user = serializers.SerializerMethodField()
+
     class Meta(BaseListCreateSerializer.Meta):
         model = Profile
-        fields = ['user_id', 'usename', 'email', 'date_of_birth', 'date_joined', 'designation', 'work_location']
+        fields = ['user', 'date_of_birth', 'designation', 'work_location']
+
+    def get_user(self, instance):
+        return UserDetailSerializer(instance.user).data
 
 
 # getting specific user's posts,events

@@ -1,6 +1,8 @@
 from django.conf.urls import include, static
 from django.contrib import admin
 from django.urls import path
+from rest_framework.schemas import get_schema_view
+from django.views.generic import TemplateView
 
 from ..settings import DjangoUtil;
 from ..utils import import_module_var
@@ -11,7 +13,15 @@ from ..views import home
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', home)
+    path('', home),
+    path('openapi/', get_schema_view(
+        title="Nimbus Service",
+        description="API developers hpoing to use our service"
+    ), name='openapi-schema'),
+    path('swagger-ui/', TemplateView.as_view(
+        template_name='swagger-ui.html',
+        extra_context={'schema_url': 'openapi-schema'}
+    ), name='swagger-ui'),
 ]
 
 for app in settings.APP_LIST:
